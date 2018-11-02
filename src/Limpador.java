@@ -4,7 +4,7 @@ class Limpador{
 
     public static void main(String []args){
 
-        System.out.println(match_celphone("(11)989832528"));
+        System.out.println(match_celphone("(11)98983-2528"));
     }
     
     public static boolean match_description(String s){
@@ -51,7 +51,8 @@ class Limpador{
         cel_regexp.add("^[0-9]{8,9}$");
         cel_regexp.add("^[0-9]{10,11}$");
         cel_regexp.add("^[0-9]{11,12}$");
-        cel_regexp.add("^/([0-9]{2}/)[0-9]{8,9}$");
+        cel_regexp.add("^\\([0-9]{2}\\)[0-9]{8,9}$");
+        cel_regexp.add("^\\([0-9]{2}\\)[0-9]{4,5}\\-[0-9]{4}$");
 
         for(String regex: cel_regexp){
             if(s.matches(regex)){
