@@ -6,7 +6,13 @@ class Limpador{
 
         System.out.println(match_celphone("(11)989832528"));
     }
-
+    
+    public static boolean match_description(String s){
+    	if(!match_address(s)&&!match_celphone(s)&&!match_email(s)){
+    		return false;
+    	}
+    	return true;
+    }
     public static boolean match_email(String s){
         boolean match = false;
         LinkedList<String> email_regexp= new LinkedList<>();
