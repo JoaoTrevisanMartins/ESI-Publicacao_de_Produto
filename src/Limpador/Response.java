@@ -1,3 +1,4 @@
+package Limpador;
 
 public class Response {
 	String response;

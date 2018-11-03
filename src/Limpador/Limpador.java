@@ -1,3 +1,5 @@
+package Limpador;
+
 import java.util.LinkedList;
 
 class Limpador{
