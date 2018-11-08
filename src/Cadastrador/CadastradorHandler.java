@@ -36,19 +36,22 @@ public class CadastradorHandler  implements RequestHandler<Request, Response>{
     	if(aprovado) {
     		JSONObject data = new JSONObject();
             try {
+            	data.put("a_venda", request.a_venda);
 				data.put("nome", request.nome);
 				data.put("foto", request.foto);
 				data.put("marca", request.marca);
 				data.put("tamanho", request.tamanho);
-				data.put("cor", request.cor);
-				data.put("departamento", request.departamento);
 				data.put("descricao", request.descricao);
 				data.put("categoria", request.categoria);
-				data.put("tendencias", request.tendencias);
 				data.put("frete", request.frete);
 				data.put("condicao", request.condicao);
 				data.put("preco", request.preco);
 				data.put("desconto", request.desconto);
+				data.put("id_comprador", request.id_comprador);
+				data.put("id_produto", request.id_produto);
+				data.put("id_vendedor", request.id_vendedor);
+				data.put("qtde_curtidas", request.qtde_curtidas);
+				data.put("tags", request.tags);
 				URL url = new URL("https://dnetix.co/ping");
 	            HttpURLConnection httpConnection = (HttpURLConnection) url.openConnection();
 	            httpConnection.setDoOutput(true);
