@@ -6,7 +6,7 @@ class Limpador{
 
     public static void main(String []args){
 
-        System.out.println(match_celphone("(11)98983-2528"));
+        System.out.println(match_celphone("1198983-2528"));
     }
     
     public static boolean match_description(String s){
@@ -51,8 +51,11 @@ class Limpador{
         boolean match = false;
         LinkedList<String> cel_regexp = new LinkedList<>();
         cel_regexp.add("^[0-9]{8,9}$");
+        cel_regexp.add("^[0-9]{4,5}\\-[0-9]{4}$");
         cel_regexp.add("^[0-9]{10,11}$");
+        cel_regexp.add("^[0-9]{6,7}\\-[0-9]{4}$"); 
         cel_regexp.add("^[0-9]{11,12}$");
+        cel_regexp.add("^[0-9]{7,8}\\-[0-9]{4}$"); 
         cel_regexp.add("^\\([0-9]{2}\\)[0-9]{8,9}$");
         cel_regexp.add("^\\([0-9]{2}\\)[0-9]{4,5}\\-[0-9]{4}$");
 
