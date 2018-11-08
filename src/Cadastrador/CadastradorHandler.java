@@ -11,18 +11,11 @@ import java.net.URL;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
+
 public class CadastradorHandler  implements RequestHandler<Request, Response>{
 	
-	public static void main(String []args) throws Exception {
-		String descricao = "asdsdf@usp.br";
-		boolean aprovado = limpa_campos(descricao);
-		if(aprovado) {
-			System.out.println("Aprovado");
-		}
-		else {
-			System.out.println("Nooooob");
-		}
-	}
+	
 	
     @Override
     public Response handleRequest(Request request, Context context) {
@@ -52,7 +45,7 @@ public class CadastradorHandler  implements RequestHandler<Request, Response>{
 				data.put("id_vendedor", request.id_vendedor);
 				data.put("qtde_curtidas", request.qtde_curtidas);
 				data.put("tags", request.tags);
-				URL url = new URL("https://dnetix.co/ping");
+				URL url = new URL("https://dry-escarpment-83331.herokuapp.com/produto");
 	            HttpURLConnection httpConnection = (HttpURLConnection) url.openConnection();
 	            httpConnection.setDoOutput(true);
 	            httpConnection.setRequestMethod("POST");
@@ -80,11 +73,13 @@ public class CadastradorHandler  implements RequestHandler<Request, Response>{
 	            }
 	            bufferedReader.close();
 	            JSONObject answer = new JSONObject(content);
-	            String a = answer.getString("response");
+	            /*String a = answer.getString("response");
 	            if(a == "ok") {
 	            	return new Response("Cadastro realizado com sucesso", "aprovado");
 	            }
-	            
+	            */
+	            System.out.println(content);
+	            return new Response("Cadastro realizado com sucesso", "aprovado");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
