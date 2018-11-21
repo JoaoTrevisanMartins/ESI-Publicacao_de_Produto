@@ -30,21 +30,21 @@ public class CadastradorHandler  implements RequestHandler<Request, Response>{
     		JSONObject data = new JSONObject();
             try {
             	data.put("a_venda", request.a_venda);
+            	data.put("categoria", request.categoria);
+            	data.put("condicao", request.condicao);
+            	data.put("desconto", request.desconto);
+            	data.put("descricao", request.descricao);
+            	data.put("foto", request.foto);
+            	data.put("frete", request.frete);
+            	data.put("id_comprador", request.id_comprador);
+            	data.put("id_produto", request.id_produto);
+            	data.put("id_vendedor", request.id_vendedor);
+            	data.put("marca", request.marca);
 				data.put("nome", request.nome);
-				data.put("foto", request.foto);
-				data.put("marca", request.marca);
-				data.put("tamanho", request.tamanho);
-				data.put("descricao", request.descricao);
-				data.put("categoria", request.categoria);
-				data.put("frete", request.frete);
-				data.put("condicao", request.condicao);
 				data.put("preco", request.preco);
-				data.put("desconto", request.desconto);
-				data.put("id_comprador", request.id_comprador);
-				data.put("id_produto", request.id_produto);
-				data.put("id_vendedor", request.id_vendedor);
 				data.put("qtde_curtidas", request.qtde_curtidas);
 				data.put("tags", request.tags);
+				data.put("tamanho", request.tamanho);
 				URL url = new URL("https://dry-escarpment-83331.herokuapp.com/produto");
 	            HttpURLConnection httpConnection = (HttpURLConnection) url.openConnection();
 	            httpConnection.setDoOutput(true);
@@ -59,8 +59,10 @@ public class CadastradorHandler  implements RequestHandler<Request, Response>{
 	            
 	            BufferedReader bufferedReader;
 	            // Creates a reader buffer
+	            boolean flag = false;
 	            if (responseCode > 199 && responseCode < 300) {
 	                bufferedReader = new BufferedReader(new InputStreamReader(httpConnection.getInputStream()));
+	                flag = true;
 	            } else {
 	            	bufferedReader = new BufferedReader(new InputStreamReader(httpConnection.getErrorStream()));
 	            }
@@ -79,7 +81,9 @@ public class CadastradorHandler  implements RequestHandler<Request, Response>{
 	            }
 	            */
 	            System.out.println(content);
-	            return new Response("Cadastro realizado com sucesso", "aprovado");
+	            if(flag)
+	            	return new Response("Cadastro realizado com sucesso", "aprovado");
+            	return new Response("Cadastro nao sucedido", "reprovado");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
