@@ -9,9 +9,9 @@ public class LimpadorHandler implements RequestHandler<Request, Response> {
 	@Override
 	public Response handleRequest(Request request, Context context) {
 		if(Limpador.match_description(request.description)){
-			return new Response("boa arrombado");
+			return new Response("Campo Limpo");
 		}
-		return new Response("se fudeu arrombado");
+		return new Response("Campo com problemas");
 	}
 
 }
