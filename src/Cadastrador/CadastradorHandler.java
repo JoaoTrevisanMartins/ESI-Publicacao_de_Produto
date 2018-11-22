@@ -129,7 +129,7 @@ public class CadastradorHandler  implements RequestHandler<Request, Response>{
         
         JSONObject answer = new JSONObject(content.toString());
         String a = answer.getString("response");
-        if(a.equals("se fudeu arrombado")){
+        if(a.equals("Campo com problemas")){
         	return false;
         }
         return true;
