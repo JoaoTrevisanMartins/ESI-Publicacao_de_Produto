@@ -25,7 +25,7 @@ public class DeletadorHandler implements RequestHandler<Request, Response> {
 			
 			data.put("id_produto", request.getId_produto());
 			
-			URL url = new URL("https://dnetix.co/ping");
+			URL url = new URL("https://dry-escarpment-83331.herokuapp.com/produto");
 			HttpURLConnection httpConnection = (HttpURLConnection) url.openConnection();
 			httpConnection.setDoOutput(true);
 			httpConnection.setRequestMethod("DELETE");
@@ -38,7 +38,9 @@ public class DeletadorHandler implements RequestHandler<Request, Response> {
 
 			BufferedReader bufferedReader;
 			// Creates a reader buffer
+			boolean flag = false;
 			if (responseCode > 199 && responseCode < 300) {
+				flag = true;
 				bufferedReader = new BufferedReader(new InputStreamReader(httpConnection.getInputStream()));
 			} else {
 				bufferedReader = new BufferedReader(new InputStreamReader(httpConnection.getErrorStream()));
@@ -53,10 +55,10 @@ public class DeletadorHandler implements RequestHandler<Request, Response> {
 			bufferedReader.close();
 			JSONObject answer = new JSONObject(content);
 			String a = answer.getString("response");
-			if (a == "ok") {
+			if (flag) {
 				return new Response("Exclusao realizado com sucesso", "aprovado");
 			}
-
+			return new Response("Exclusao nao sucedido", "reprovado");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
