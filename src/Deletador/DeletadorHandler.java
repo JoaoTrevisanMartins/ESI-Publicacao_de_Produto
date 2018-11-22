@@ -2,7 +2,6 @@ package Deletador;
 
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
-import Cadastrador.Request;
 
 import com.amazonaws.services.lambda.runtime.Context;
 
@@ -12,28 +11,25 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class DeletadorHandler implements RequestHandler<Request, Response> {
 
 	@Override
 	public Response handleRequest(Request request, Context context) {
 
-		JSONObject data = new JSONObject();
 		try {
 			
-			data.put("id_produto", request.getId_produto());
+			int id = request.getId_produto();
 			
-			URL url = new URL("https://dry-escarpment-83331.herokuapp.com/produto");
+			URL url = new URL("https://dry-escarpment-83331.herokuapp.com/produto/" + id);
 			HttpURLConnection httpConnection = (HttpURLConnection) url.openConnection();
 			httpConnection.setDoOutput(true);
 			httpConnection.setRequestMethod("DELETE");
-			httpConnection.setRequestProperty("Content-Type", "application/json");
-			httpConnection.setRequestProperty("Accept", "application/json");
+			httpConnection.setRequestProperty(
+				    "Content-Type", "application/x-www-form-urlencoded" );
+			httpConnection.connect();
 
-			DataOutputStream wr = new DataOutputStream(httpConnection.getOutputStream());
-			wr.write(data.toString().getBytes());
+			
 			Integer responseCode = httpConnection.getResponseCode();
 
 			BufferedReader bufferedReader;
@@ -53,8 +49,9 @@ public class DeletadorHandler implements RequestHandler<Request, Response> {
 				content.append(line).append("\n");
 			}
 			bufferedReader.close();
-			JSONObject answer = new JSONObject(content);
-			String a = answer.getString("response");
+//			JSONObject answer = new JSONObject(content);
+//			String a = answer.getString("response");
+			System.out.println(content);
 			if (flag) {
 				return new Response("Exclusao realizado com sucesso", "aprovado");
 			}
