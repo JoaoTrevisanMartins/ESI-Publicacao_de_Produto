@@ -25,6 +25,7 @@ public class AlteradorHandler implements RequestHandler<Request, Response> {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+    	aprovado = true;
     	if(aprovado) {
     		JSONObject data = new JSONObject();
             try {
@@ -73,8 +74,12 @@ public class AlteradorHandler implements RequestHandler<Request, Response> {
 	                content.append(line).append("\n");
 	            }
 	            bufferedReader.close();
-	            JSONObject answer = new JSONObject(content);
-	            String a = answer.getString("response");
+	            /*String a = answer.getString("response");
+	            if(a == "ok") {
+	            	return new Response("Cadastro realizado com sucesso", "aprovado");
+	            }
+	            */
+	            System.out.println(content);
 	            if(flag) {
 	            	return new Response("Alteracao realizado com sucesso", "aprovado");
 	            }
