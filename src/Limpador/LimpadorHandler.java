@@ -8,10 +8,14 @@ public class LimpadorHandler implements RequestHandler<Request, Response> {
 
 	@Override
 	public Response handleRequest(Request request, Context context) {
-		if(Limpador.match_description(request.description)){
-			return new Response("Campo Limpo");
+		if(Limpador.match_email(request.description)){
+			return new Response("Tem email no campo");
+		} else if(Limpador.match_celphone(request.description)){
+			return new Response("Tem celular no campo");
+		} else if(Limpador.match_address(request.description)){
+			return new Response("Tem endereço no campo");
+		} else {
+			return new Response("Campo limpo");
 		}
-		return new Response("Campo com problemas");
 	}
-
 }
