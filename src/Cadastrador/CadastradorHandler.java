@@ -21,7 +21,7 @@ public class CadastradorHandler  implements RequestHandler<Request, Response>{
     public Response handleRequest(Request request, Context context) {
     	boolean aprovado = false;
     	try {
-			aprovado = limpa_campos(request.nome + " " + request.descricao);
+			aprovado = limpa_campos(request.getCategoria() + " " + request.getCondicao() + " " + request.getDescricao() + " " + request.getFrete() + " " + request.getMarca() + " " + request.getNome() + " " + request.getTamanho());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -37,7 +37,7 @@ public class CadastradorHandler  implements RequestHandler<Request, Response>{
             	data.put("foto", request.foto);
             	data.put("frete", request.frete);
             	data.put("id_comprador", request.id_comprador);
-            	data.put("id_produto", request.id_produto);
+//            	data.put("id_produto", request.id_produto);
             	data.put("id_vendedor", request.id_vendedor);
             	data.put("marca", request.marca);
 				data.put("nome", request.nome);
@@ -98,7 +98,7 @@ public class CadastradorHandler  implements RequestHandler<Request, Response>{
         JSONObject data = new JSONObject();
         data.put("description", s);
         
-        URL url = new URL("https://3pf8dr4ds6.execute-api.us-east-1.amazonaws.com/ChecaEmail");
+        URL url = new URL("https://rngh8l6wcd.execute-api.sa-east-1.amazonaws.com/Limpador");
         HttpURLConnection httpConnection = (HttpURLConnection) url.openConnection();
         httpConnection.setDoOutput(true);
         httpConnection.setRequestMethod("POST");

@@ -8,7 +8,7 @@ public class Request {
     String [] foto, tags; 
     
     public Request(String nome, String marca, String tamanho, String descricao, String categoria, String frete,
-			String condicao, double preco, double desconto, int id_comprador, int id_produto, int id_vendedor,
+			String condicao, double preco, double desconto, int id_comprador, int id_vendedor,
 			int qtde_curtidas, boolean a_venda, String[] foto, String[] tags) {
 		super();
 		this.nome = nome;
@@ -21,7 +21,6 @@ public class Request {
 		this.preco = preco;
 		this.desconto = desconto;
 		this.id_comprador = id_comprador;
-		this.id_produto = id_produto;
 		this.id_vendedor = id_vendedor;
 		this.qtde_curtidas = qtde_curtidas;
 		this.a_venda = a_venda;
