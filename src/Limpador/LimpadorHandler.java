@@ -13,5 +13,4 @@ public class LimpadorHandler implements RequestHandler<Request, Response> {
 		}
 		return new Response("Campo com problemas");
 	}
-
 }
