@@ -20,7 +20,7 @@ public class AlteradorHandler implements RequestHandler<Request, Response> {
 	public Response handleRequest(Request request, Context context) {
     	boolean aprovado = false;
     	try {
-			aprovado = limpa_campos(request.getNome() + " " + request.getDescricao());
+			aprovado = limpa_campos(request.getCategoria() + " " + request.getCondicao() + " " + request.getDescricao() + " " + request.getFrete() + " " + request.getMarca() + " " + request.getNome() + " " + request.getTamanho());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -44,10 +44,10 @@ public class AlteradorHandler implements RequestHandler<Request, Response> {
 				data.put("id_vendedor", request.getId_vendedor());
 				data.put("qtde_curtidas", request.getQtde_curtidas());
 				data.put("tags", request.getTags());
-				URL url = new URL("https://dnetix.co/ping");
+				URL url = new URL("https://dry-escarpment-83331.herokuapp.com/produto");
 	            HttpURLConnection httpConnection = (HttpURLConnection) url.openConnection();
 	            httpConnection.setDoOutput(true);
-	            httpConnection.setRequestMethod("POST");
+	            httpConnection.setRequestMethod("PUT");
 	            httpConnection.setRequestProperty("Content-Type", "application/json");
 	            httpConnection.setRequestProperty("Accept", "application/json");
 	            
@@ -58,7 +58,9 @@ public class AlteradorHandler implements RequestHandler<Request, Response> {
 	            
 	            BufferedReader bufferedReader;
 	            // Creates a reader buffer
+	            boolean flag = false;
 	            if (responseCode > 199 && responseCode < 300) {
+	            	flag = true;
 	                bufferedReader = new BufferedReader(new InputStreamReader(httpConnection.getInputStream()));
 	            } else {
 	            	bufferedReader = new BufferedReader(new InputStreamReader(httpConnection.getErrorStream()));
@@ -73,10 +75,10 @@ public class AlteradorHandler implements RequestHandler<Request, Response> {
 	            bufferedReader.close();
 	            JSONObject answer = new JSONObject(content);
 	            String a = answer.getString("response");
-	            if(a == "ok") {
+	            if(flag) {
 	            	return new Response("Alteracao realizado com sucesso", "aprovado");
 	            }
-	            
+	            return new Response("Alteracao nao sucedido", "reprovado");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -91,7 +93,7 @@ public class AlteradorHandler implements RequestHandler<Request, Response> {
         JSONObject data = new JSONObject();
         data.put("description", s);
         
-        URL url = new URL("https://3pf8dr4ds6.execute-api.us-east-1.amazonaws.com/ChecaEmail");
+        URL url = new URL("https://rngh8l6wcd.execute-api.sa-east-1.amazonaws.com/Limpador");
         HttpURLConnection httpConnection = (HttpURLConnection) url.openConnection();
         httpConnection.setDoOutput(true);
         httpConnection.setRequestMethod("POST");
@@ -122,7 +124,7 @@ public class AlteradorHandler implements RequestHandler<Request, Response> {
         
         JSONObject answer = new JSONObject(content.toString());
         String a = answer.getString("response");
-        if(a.equals("se fudeu arrombado")){
+        if(a.equals("Campo com problemas")){
         	return false;
         }
         return true;
