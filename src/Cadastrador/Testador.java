@@ -13,7 +13,7 @@ public class Testador {
 		*/
 		String [] fotos = {"lskdjflksjdf", "asdfdfg"};
 		String [] tags = {"retro"};
-		Request request = new Request("camiseta confortavel", "MC Igu", "grande", "camiseta bem confortavel", "camiseta", "sem frete", "bom estado", 50, 20, 42, 2, 3, 0, true, fotos, tags);
+		Request request = new Request("camiseta confortavel 2", "MC Igu", "medio", "camiseta bem confortavel", "camiseta", "sem frete", "bom estado", 50, 20, 42, 3, 0, true, fotos, tags);
 		CadastradorHandler cadastrador = new CadastradorHandler();
 		Response response = cadastrador.handleRequest(request, null);
 		System.out.println(response.message + " " + response.status);
