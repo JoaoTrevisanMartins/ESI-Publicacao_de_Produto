@@ -25,7 +25,6 @@ public class AlteradorHandler implements RequestHandler<Request, Response> {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	aprovado = true;
     	if(aprovado) {
     		JSONObject data = new JSONObject();
             try {
