@@ -19,14 +19,14 @@ public class CadastradorHandler  implements RequestHandler<Request, Response>{
 	
     @Override
     public Response handleRequest(Request request, Context context) {
-    	boolean aprovado = false;
+    	String status = "";
     	try {
-			aprovado = limpa_campos(request.getCategoria() + " " + request.getCondicao() + " " + request.getDescricao() + " " + request.getFrete() + " " + request.getMarca() + " " + request.getNome() + " " + request.getTamanho());
+			status = limpa_campos(request.getCategoria() + " " + request.getCondicao() + " " + request.getDescricao() + " " + request.getFrete() + " " + request.getMarca() + " " + request.getNome() + " " + request.getTamanho());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	if(aprovado) {
+    	if(status.equals("Campo limpo")) {
     		JSONObject data = new JSONObject();
             try {
             	data.put("a_venda", request.a_venda);
@@ -82,8 +82,8 @@ public class CadastradorHandler  implements RequestHandler<Request, Response>{
 	            */
 	            System.out.println(content);
 	            if(flag)
-	            	return new Response("Cadastro realizado com sucesso", "aprovado");
-            	return new Response("Cadastro nao sucedido", "reprovado");
+	            	return new Response("Cadastro realizado com sucesso", "Aprovado");
+            	return new Response("Cadastro nao sucedido", "Erro durante cadastro");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -91,10 +91,10 @@ public class CadastradorHandler  implements RequestHandler<Request, Response>{
             
     	}
 
-        return new Response("Cadastro nao sucedido", "reprovado");
+        return new Response("Cadastro nao sucedido", status);
     }
 
-    static public boolean limpa_campos(String s) throws Exception{
+    static public String limpa_campos(String s) throws Exception{
         JSONObject data = new JSONObject();
         data.put("description", s);
         
@@ -115,7 +115,7 @@ public class CadastradorHandler  implements RequestHandler<Request, Response>{
         if (responseCode > 199 && responseCode < 300) {
             bufferedReader = new BufferedReader(new InputStreamReader(httpConnection.getInputStream()));
         } else {
-           return false;
+           return "Erro ao checar campos";
         }
 
         // To receive the response
@@ -129,10 +129,7 @@ public class CadastradorHandler  implements RequestHandler<Request, Response>{
         
         JSONObject answer = new JSONObject(content.toString());
         String a = answer.getString("response");
-        if(a.equals("Campo com problemas")){
-        	return false;
-        }
-        return true;
+        return a;
     }
     
     
