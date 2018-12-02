@@ -97,7 +97,7 @@ public class AlteradorHandler implements RequestHandler<Request, Response> {
     	JSONObject data = new JSONObject();
         data.put("description", s);
         
-        URL url = new URL("https://rngh8l6wcd.execute-api.sa-east-1.amazonaws.com/Limpador");
+        URL url = new URL("https://9nxjgv0mld.execute-api.sa-east-1.amazonaws.com/Limpador");
         HttpURLConnection httpConnection = (HttpURLConnection) url.openConnection();
         httpConnection.setDoOutput(true);
         httpConnection.setRequestMethod("POST");
