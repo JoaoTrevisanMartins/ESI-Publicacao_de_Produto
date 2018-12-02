@@ -13,7 +13,7 @@ public class LimpadorHandler implements RequestHandler<Request, Response> {
 		} else if(Limpador.match_celphone(request.description)){
 			return new Response("Tem celular no campo");
 		} else if(Limpador.match_address(request.description)){
-			return new Response("Tem endereço no campo");
+			return new Response("Tem endereco no campo");
 		} else {
 			return new Response("Campo limpo");
 		}

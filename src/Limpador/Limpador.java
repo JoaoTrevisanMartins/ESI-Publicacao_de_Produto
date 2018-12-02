@@ -1,4 +1,4 @@
-package Limpador;
+//package Limpador;
 
 import java.util.LinkedList;
 
@@ -6,7 +6,7 @@ class Limpador{
 
     public static void main(String []args){
 
-        System.out.println(match_address("Ow Joao. Enfi4 um paunocu, seu arrombz :D"));
+        System.out.println(match_address("Ow Joao. Enfi4 um gostosinho, rua pires da mota, 222, apt. 23B seu arrombz :D"));
     }
     
     public static boolean match_description(String s){
@@ -43,7 +43,7 @@ class Limpador{
         return match;
     }
     public static boolean match_address(String s){
-        return s.matches("^.*(RUA|Rua|R.|rua|AVENIDA|Avenida|AV.|av.|avenida|TRAVESSA|Travessa|TRAV.|Trav.|trav.|travessa) ([a-zA-Z_\\s]+)[, ]+(\\d+)\\s?([-/\\da-zDA-Z\\\\ ]+)?+.*$");
+        return s.matches("^.*(RUA|Rua|R.|rua|AVENIDA|Avenida|AV.|av.|avenida|TRAVESSA|Travessa|TRAV.|Trav.|trav.|travessa).+[, ]+([0-9]*)\\s?([-/\\da-zDA-Z\\\\ ]+)?+.*$");
     }
 
     public static boolean match_celphone(String s){
