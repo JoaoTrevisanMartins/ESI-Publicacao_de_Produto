@@ -6,7 +6,7 @@ class Limpador{
 
     public static void main(String []args){
 
-        System.out.println(match_address("Ow Joao. Enfi4 um gostosinho, rua pires da mota, 222, apt. 23B seu arrombz :D"));
+        System.out.println(match_address("rua pires da mota"));
     }
     
     public static boolean match_description(String s){
