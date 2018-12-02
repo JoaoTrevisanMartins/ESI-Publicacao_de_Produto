@@ -6,7 +6,7 @@ class Limpador{
 
     public static void main(String []args){
 
-        System.out.println(match_celphone("96482-2051"));
+        System.out.println(match_address("Ow Joao. Enfi4 um paunocu, seu arrombz :D"));
     }
     
     public static boolean match_description(String s){
